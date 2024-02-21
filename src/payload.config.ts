@@ -3,6 +3,7 @@ import { webpackBundler } from '@payloadcms/bundler-webpack';
 import { mongooseAdapter } from '@payloadcms/db-mongodb';
 import { slateEditor } from '@payloadcms/richtext-slate';
 import path from 'path';
+import Users from './collections/Users';
 
 // dotenv.config({
 //   path: path.resolve(__dirname, '../.env'),
@@ -10,7 +11,7 @@ import path from 'path';
 
 export default buildConfig({
   serverURL: process.env.NEXT_PUBLIC_SERVER_URL || '',
-  collections: [],
+  collections: [Users],
   routes: {
     admin: '/admin',
   },
