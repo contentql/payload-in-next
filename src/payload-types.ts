@@ -20,6 +20,7 @@ export interface Config {
  */
 export interface User {
   id: string;
+  user_name?: string | null;
   roles?: ('admin' | 'user' | 'seller')[] | null;
   updatedAt: string;
   createdAt: string;
