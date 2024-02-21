@@ -14,6 +14,11 @@ const Users: CollectionConfig = {
   },
   fields: [
     {
+      name: 'user_name',
+      type: 'text',
+      label: 'User Name',
+    },
+    {
       name: 'roles',
       type: 'select',
       options: [
