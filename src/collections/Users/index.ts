@@ -9,6 +9,7 @@ const Users: CollectionConfig = {
       // domain: process.env.PAYLOAD_COOKIE_DOMAIN,
     },
     verify: {
+      //TODO: Generate your custom email template and move this code to another folder
       generateEmailHTML: ({ token }) => {
         //TODO: Should replace the frontendURL
         const frontendUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/test/auth/verify-email`;

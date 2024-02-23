@@ -38,9 +38,9 @@ export default function Auth() {
       console.error('Something went wrong. Please try again.');
     },
     onSuccess: ({ sentEmailTo }) => {
+      // TODO:
       // clear the form
-      // redirect to email verification page
-      // TODO: Integrate with Resend and Sendgrid
+      // redirect to email verification status page
       console.log(
         'you will redirect to a page, where we ask the user to verify their email at' +
           ` ${sentEmailTo}`,

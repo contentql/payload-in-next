@@ -21,7 +21,7 @@ const VerifyEmail = ({ searchParams }: PageProps) => {
   // Todo rewrite this entire thing in production
   isFetching ? <div>loading...</div> : null;
   isError ? <div>redirect to error page and unauthorized access</div> : null;
-  isSuccess && router.push('/auth');
+  isSuccess && router.push('/auth'); //TODO: Replace with your first entry point of the logged in user(specific to role)
 
   return <div>verification done, login</div>;
 };
