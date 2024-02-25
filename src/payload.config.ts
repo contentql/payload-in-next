@@ -5,6 +5,8 @@ import { slateEditor } from '@payloadcms/richtext-slate';
 import path from 'path';
 import Users from './collections/Users';
 import dotenv from 'dotenv';
+import { cloudStorage } from '@payloadcms/plugin-cloud-storage';
+import { s3StorageAdapter } from './plugins/s3';
 
 dotenv.config({
   path: path.resolve(__dirname, '../.env'),
@@ -30,6 +32,15 @@ export default buildConfig({
   db: mongooseAdapter({
     url: process.env.MONGODB_URL!,
   }),
+  plugins: [
+    cloudStorage({
+      collections: {
+        media: {
+          adapter: s3StorageAdapter,
+        },
+      },
+    }),
+  ],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },
