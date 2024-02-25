@@ -7,6 +7,7 @@ import Users from './collections/Users';
 import dotenv from 'dotenv';
 import { cloudStorage } from '@payloadcms/plugin-cloud-storage';
 import { s3StorageAdapter } from './plugins/s3';
+import { Media } from './collections/Media';
 
 dotenv.config({
   path: path.resolve(__dirname, '../.env'),
@@ -14,13 +15,22 @@ dotenv.config({
 
 export default buildConfig({
   serverURL: process.env.NEXT_PUBLIC_SERVER_URL!,
-  collections: [Users],
+  collections: [Users, Media],
   routes: {
     admin: '/admin',
   },
   admin: {
     user: Users.slug,
     bundler: webpackBundler(),
+    webpack: (config: any) => {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        util: false,
+        os: false,
+      };
+      return config;
+    },
     meta: {
       titleSuffix: '- ContentQL',
     },
