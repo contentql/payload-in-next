@@ -1,3 +1,4 @@
+import { PrimaryActionEmailHtml } from '../../emails/PrimaryActionEmail';
 import { CollectionConfig } from 'payload/types';
 
 const Users: CollectionConfig = {
@@ -10,9 +11,11 @@ const Users: CollectionConfig = {
     },
     verify: {
       generateEmailHTML: ({ token }) => {
-        //TODO: Should replace the frontendURL
-        const frontendUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/test/auth/verify-email`;
-        return `<p>click on the <a href=${frontendUrl}?token=${token}>link</a> to verify</p>`;
+        return PrimaryActionEmailHtml({
+          actionLabel: 'verify your account',
+          buttonText: 'Verify Account',
+          href: `${process.env.NEXT_PUBLIC_SERVER_URL}/verify?token=${token}`,
+        });
       },
     },
   },
