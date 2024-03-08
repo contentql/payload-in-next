@@ -8,18 +8,10 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'pin-lottery-production.up.railway.app',
-      },
-      {
-        protocol: 'https',
-        hostname: 'r2.cloudflarestorage.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'pub-4569e4e5d557441e896fc4fbf32626f3.r2.dev',
+        hostname: 'payload-in-next-production.up.railway.app', //TODO: update accordingly
       },
     ],
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

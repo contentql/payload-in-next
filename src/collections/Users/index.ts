@@ -1,6 +1,5 @@
-import { CollectionConfig } from 'payload/types'
-import { ResetPassword } from '../../email-templates/resetPassword'
-import { UserAccountVerification } from '../../email-templates/userAccountVerification'
+import { CollectionConfig } from 'payload/types';
+
 const Users: CollectionConfig = {
   slug: 'users',
   auth: {
@@ -9,24 +8,11 @@ const Users: CollectionConfig = {
       sameSite: 'strict',
       // domain: process.env.PAYLOAD_COOKIE_DOMAIN,
     },
-    forgotPassword: {
-      generateEmailHTML: args => {
-        return ResetPassword({
-          actionLabel: 'Reset Your Password',
-          buttonText: 'Reset Password',
-          href: `${process.env.NEXT_PUBLIC_SERVER_URL}/reset-password?token=${args?.token}`,
-        })
-      },
-    },
     verify: {
-      generateEmailHTML: ({ token, user }) => {
-        console.log('Verifying user', user)
-        return UserAccountVerification({
-          actionLabel: 'verify your account',
-          buttonText: 'Verify Account',
-          userName: user.user_name,
-          href: `${process.env.NEXT_PUBLIC_SERVER_URL}/verify?token=${token}`,
-        })
+      generateEmailHTML: ({ token }) => {
+        //TODO: Should replace the frontendURL
+        const frontendUrl = `${process.env.NEXT_PUBLIC_SERVER_URL}/test/auth/verify-email`;
+        return `<p>click on the <a href=${frontendUrl}?token=${token}>link</a> to verify</p>`;
       },
     },
   },
@@ -38,26 +24,6 @@ const Users: CollectionConfig = {
       name: 'user_name',
       type: 'text',
       label: 'User Name',
-    },
-    {
-      name: 'first_name',
-      type: 'text',
-      label: 'First Name',
-    },
-    {
-      name: 'last_name',
-      type: 'text',
-      label: 'Last Name',
-    },
-    {
-      name: 'address',
-      type: 'textarea',
-      label: 'User Address',
-    },
-    {
-      name: 'phone_number',
-      type: 'text',
-      label: 'Phone Number',
     },
     {
       name: 'roles',
@@ -72,6 +38,6 @@ const Users: CollectionConfig = {
       saveToJWT: true,
     },
   ],
-}
+};
 
-export default Users
+export default Users;
